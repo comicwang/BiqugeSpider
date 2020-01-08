@@ -40,19 +40,33 @@ namespace BiqugeSpeeker
                 dynamic json = JToken.Parse(result);
                 token = json.access_token;
                 long expires_in = json.expires_in;
-                redisConfig._AddKey<string>("baidu_token", token,new TimeSpan(expires_in*1000*1000*10));
+                redisConfig._AddKey<string>("baidu_token", token, new TimeSpan(expires_in * 1000 * 1000 * 10));
             }
             return token;
         }
 
         public void GetAudio(string filePath,string text)
         {
+            //获取参数
+            int vol = redisConfig._GetKey<int>("vol");
+            if (vol == default(int))
+                vol = 5;
+            int pit = redisConfig._GetKey<int>("pit");
+            if (pit == default(int))
+                pit = 5;
+            int spd = redisConfig._GetKey<int>("spd");
+            if (spd == default(int))
+                spd = 5;
+            int per = redisConfig._GetKey<int>("per");
+            if (per == default(int))
+                per = 0;
+
             string token = getTokon();
             var handler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip };
             HttpClient httpClient = new HttpClient(handler);
             httpClient.BaseAddress = new Uri("http://tsn.baidu.com/text2audio");
             //await异步等待回应
-            var response = httpClient.PostAsync($"http://tsn.baidu.com/text2audio?lan=zh&ctp=2&vol=9&per=0&spd=5&pit=5&aue=3&tok={token}&tex={HttpUtility.UrlEncode(HttpUtility.UrlEncode(text))}&cuid={Guid.NewGuid()}&aue=6", null).Result;
+            var response = httpClient.PostAsync($"http://tsn.baidu.com/text2audio?lan=zh&ctp=2&vol={vol}&per={per}&spd={spd}&pit={pit}&aue=3&tok={token}&tex={HttpUtility.UrlEncode(HttpUtility.UrlEncode(text))}&cuid={Guid.NewGuid()}&aue=6", null).Result;
             //确保HTTP成功状态值
             response.EnsureSuccessStatusCode();
             //await异步读取最后的JSON（注意此时gzip已经被自动解压缩了，因为上面的AutomaticDecompression = DecompressionMethods.GZip）

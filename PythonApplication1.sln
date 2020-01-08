@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonApplication1", "PythonApplication1\PythonApplication1.pyproj", "{ED34BBCB-B821-460C-9F5F-FAC04AE7C805}"
-EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BiqugeSpider", "BiqugeSpider\BiqugeSpider\BiqugeSpider.pyproj", "{45944DA6-77A4-425A-BB41-195FB461D03C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiqugeSpeeker", "BiqugeSpeeker\BiqugeSpeeker.csproj", "{F43ED5B6-BE77-477C-AFF7-E614DA336A69}"
@@ -15,8 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ED34BBCB-B821-460C-9F5F-FAC04AE7C805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED34BBCB-B821-460C-9F5F-FAC04AE7C805}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45944DA6-77A4-425A-BB41-195FB461D03C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45944DA6-77A4-425A-BB41-195FB461D03C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F43ED5B6-BE77-477C-AFF7-E614DA336A69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

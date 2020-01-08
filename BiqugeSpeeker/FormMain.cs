@@ -21,6 +21,7 @@ namespace BiqugeSpeeker
         private IDbProvider dbProvider = DbFactory.CreateDbProvider();
         BaiduApi baiduApi = new BaiduApi();
         IWMPPlaylist playList = null;
+        Dictionary<int, int[]> keyValuePairs = new Dictionary<int, int[]>();
 
         public FormMain()
         {
@@ -48,23 +49,43 @@ namespace BiqugeSpeeker
             playList= axWindowsMediaPlayer1.playlistCollection.newPlaylist("MyPlayList");
             axWindowsMediaPlayer1.currentPlaylist = playList;
             axWindowsMediaPlayer1.PlayStateChange += AxWindowsMediaPlayer1_PlayStateChange;
+
+           // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Underline | FontStyle.Bold);
+            richTextBox1.SelectionBackColor = SystemColors.Highlight;
         }
 
         private void AxWindowsMediaPlayer1_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
+            //高亮文本
+            if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsTransitioning)
+            {
+                HighlightText();
+            }
+
             if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsMediaEnded)
             {
                 played++;
                 //最后一个
-                if (played == playList.count)
+                if (played > 0 && played == playList.count-1)
                 {
                     //清空播放列表
                     playList.clear();
+                    keyValuePairs.Clear();
                     played = 0;
                     //删除播放文件
+                    BookInfo bookInfo = bindingSource2.DataSource as BookInfo;
+                    string dir = Path.Combine(Path.GetTempPath(), bookInfo.BookName);
+                    try
+                    {
+                        Directory.Delete(dir, true);
+                    }
+                    catch
+                    {
+
+                    }
                     //自动播放下一章
                     button3_Click(null, null);
-                    BookInfo bookInfo = bindingSource2.DataSource as BookInfo;
+                    bookInfo = bindingSource2.DataSource as BookInfo;
                     if (backgroundWorker1.IsBusy)
                         backgroundWorker1.CancelAsync();
                     backgroundWorker1.RunWorkerAsync(bookInfo);
@@ -182,6 +203,23 @@ namespace BiqugeSpeeker
             bindingSource2.DataSource = bookInfo;
         }
 
+        /// <summary>
+        /// 高亮显示文本
+        /// </summary>
+        private void HighlightText()
+        {
+            int[] selected = keyValuePairs[played];
+            int index = richTextBox1.Find(richTextBox1.Text.Substring(selected[0], selected[1]));
+            if (index >= 0)
+            {
+                richTextBox1.SelectionStart = selected[0];
+                richTextBox1.SelectionLength = played < (keyValuePairs.Count-1) ? (keyValuePairs[played + 1][0] - selected[0]) : selected[1];
+                //richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Regular);
+                richTextBox1.SelectionBackColor = SystemColors.Highlight;
+                richTextBox1.SelectionColor = Color.White;
+            }
+        }
+
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
             pnlBookInfo.Visible = false;
@@ -193,7 +231,21 @@ namespace BiqugeSpeeker
 
         private void button5_Click(object sender, EventArgs e)
         {
+            //清空播放列表
+            playList.clear();
+            keyValuePairs.Clear();
+            played = 0;
+            //删除播放文件
             BookInfo bookInfo = bindingSource2.DataSource as BookInfo;
+            string dir = Path.Combine(Path.GetTempPath(), bookInfo.BookName);
+            try
+            {
+                Directory.Delete(dir, true);
+            }
+            catch
+            {
+
+            }
             if (backgroundWorker1.IsBusy)
                 backgroundWorker1.CancelAsync();
             backgroundWorker1.RunWorkerAsync(bookInfo);
@@ -209,6 +261,13 @@ namespace BiqugeSpeeker
                 Directory.CreateDirectory(dir);
             }
             int index = 0;
+            int lastLen = 0;
+            //播放章节标题
+            string filePath = Path.Combine(dir, index + ".mp3");
+            baiduApi.GetAudio(filePath, bookInfo.BookName);
+            backgroundWorker1.ReportProgress(0, filePath);
+            keyValuePairs.Add(index, new int[] { 0, 0 });
+            index++;
 
             //请求资源
             foreach (var item in bookInfo.Desc1.Split('。', '，', '；', ',', '.'))
@@ -220,9 +279,14 @@ namespace BiqugeSpeeker
                 int len = item.Length;
                 for (int i = 0; i <= len / 50; i++)
                 {
-                    string filePath = Path.Combine(dir, index + ".mp3");
-                    baiduApi.GetAudio(filePath, item.Substring(i * 50, Math.Min(item.Substring(i * 50).Length, 50)));
+                    string text = item.Substring(i * 50, Math.Min(item.Substring(i * 50).Length, 50));
+                    filePath = Path.Combine(dir, index + ".mp3");
+                    baiduApi.GetAudio(filePath, text);
                     backgroundWorker1.ReportProgress(0, filePath);
+                    //播放文字长度
+                    int start = bookInfo.Desc1.IndexOf(text, lastLen);
+                    lastLen = start + Math.Min(item.Substring(i * 50).Length, 50);
+                    keyValuePairs.Add(index, new int[] { start, Math.Min(item.Substring(i * 50).Length, 50) });
                     index++;
                 }
             }
@@ -252,6 +316,12 @@ namespace BiqugeSpeeker
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             
+        }
+
+        private void 小说设置SToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetting formSetting = new FormSetting(this);
+            formSetting.ShowDialog();
         }
     }
 
