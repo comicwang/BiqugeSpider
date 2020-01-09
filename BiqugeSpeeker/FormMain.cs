@@ -66,12 +66,13 @@ namespace BiqugeSpeeker
             {
                 played++;
                 //最后一个
-                if (played > 0 && played == playList.count-1)
+                if (played > 0 && played == playList.count)
                 {
                     //清空播放列表
                     playList.clear();
                     keyValuePairs.Clear();
                     played = 0;
+                    richTextBox1.Text = string.Empty;
                     //删除播放文件
                     BookInfo bookInfo = bindingSource2.DataSource as BookInfo;
                     string dir = Path.Combine(Path.GetTempPath(), bookInfo.BookName);
@@ -84,11 +85,21 @@ namespace BiqugeSpeeker
 
                     }
                     //自动播放下一章
-                    button3_Click(null, null);
-                    bookInfo = bindingSource2.DataSource as BookInfo;
-                    if (backgroundWorker1.IsBusy)
-                        backgroundWorker1.CancelAsync();
-                    backgroundWorker1.RunWorkerAsync(bookInfo);
+                    bookInfo = listBox2.SelectedItem as BookInfo;
+                    List<BookInfo> bookInfos = listBox2.DataSource as List<BookInfo>;
+                    int index = bookInfos.IndexOf(bookInfo);
+                    if (index > 0 && index < bookInfos.Count - 1)
+                    {
+                        button3_Click(null, null);
+                        bookInfo = bindingSource2.DataSource as BookInfo;
+                        if (!backgroundWorker1.IsBusy)
+                            backgroundWorker1.RunWorkerAsync(bookInfo);
+                    }
+                    else
+                    {
+                        if (!backgroundWorker1.IsBusy)
+                            backgroundWorker1.RunWorkerAsync(new BookInfo() { BookName = "当前目录已播放完" });
+                    }
                 }
             }
         }
@@ -208,15 +219,21 @@ namespace BiqugeSpeeker
         /// </summary>
         private void HighlightText()
         {
-            int[] selected = keyValuePairs[played];
-            int index = richTextBox1.Find(richTextBox1.Text.Substring(selected[0], selected[1]));
-            if (index >= 0)
+            if (keyValuePairs.ContainsKey(played))
             {
-                richTextBox1.SelectionStart = selected[0];
-                richTextBox1.SelectionLength = played < (keyValuePairs.Count-1) ? (keyValuePairs[played + 1][0] - selected[0]) : selected[1];
-                //richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Regular);
-                richTextBox1.SelectionBackColor = SystemColors.Highlight;
-                richTextBox1.SelectionColor = Color.White;
+                int[] selected = keyValuePairs[played];
+                if (richTextBox1.Text.Length >= selected[0] + selected[1])
+                {
+                    int index = richTextBox1.Find(richTextBox1.Text.Substring(selected[0], selected[1]));
+                    if (index >= 0)
+                    {
+                        richTextBox1.SelectionStart = selected[0];
+                        richTextBox1.SelectionLength = played < (keyValuePairs.Count - 1) ? (keyValuePairs[played + 1][0] - selected[0]) : selected[1];
+                        //richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Regular);
+                        richTextBox1.SelectionBackColor = SystemColors.Highlight;
+                        richTextBox1.SelectionColor = Color.White;
+                    }
+                }
             }
         }
 
@@ -270,24 +287,27 @@ namespace BiqugeSpeeker
             index++;
 
             //请求资源
-            foreach (var item in bookInfo.Desc1.Split('。', '，', '；', ',', '.'))
+            if (!string.IsNullOrEmpty(bookInfo.Desc1))
             {
-                if (string.IsNullOrEmpty(item))
+                foreach (var item in bookInfo.Desc1.Split('。', '，', '；', ',', '.'))
                 {
-                    continue;
-                }
-                int len = item.Length;
-                for (int i = 0; i <= len / 50; i++)
-                {
-                    string text = item.Substring(i * 50, Math.Min(item.Substring(i * 50).Length, 50));
-                    filePath = Path.Combine(dir, index + ".mp3");
-                    baiduApi.GetAudio(filePath, text);
-                    backgroundWorker1.ReportProgress(0, filePath);
-                    //播放文字长度
-                    int start = bookInfo.Desc1.IndexOf(text, lastLen);
-                    lastLen = start + Math.Min(item.Substring(i * 50).Length, 50);
-                    keyValuePairs.Add(index, new int[] { start, Math.Min(item.Substring(i * 50).Length, 50) });
-                    index++;
+                    if (string.IsNullOrEmpty(item))
+                    {
+                        continue;
+                    }
+                    int len = item.Length;
+                    for (int i = 0; i <= len / 50; i++)
+                    {
+                        string text = item.Substring(i * 50, Math.Min(item.Substring(i * 50).Length, 50));
+                        filePath = Path.Combine(dir, index + ".mp3");
+                        baiduApi.GetAudio(filePath, text);
+                        backgroundWorker1.ReportProgress(0, filePath);
+                        //播放文字长度
+                        int start = bookInfo.Desc1.IndexOf(text, lastLen);
+                        lastLen = start + Math.Min(item.Substring(i * 50).Length, 50);
+                        keyValuePairs.Add(index, new int[] { start, Math.Min(item.Substring(i * 50).Length, 50) });
+                        index++;
+                    }
                 }
             }
         }

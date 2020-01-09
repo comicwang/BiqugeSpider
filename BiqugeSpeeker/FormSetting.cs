@@ -34,9 +34,9 @@ namespace BiqugeSpeeker
             perInfos.Add(new PerInfo() { Val = 103, Display = "度米朵" });
             perInfos.Add(new PerInfo() { Val = 5, Display = "度小娇" });
 
-            comboBox1.DataSource = perInfos;
-            comboBox1.DisplayMember = "Display";
-            comboBox1.ValueMember = "Val";
+            per.DataSource = perInfos;
+            per.DisplayMember = "Display";
+            per.ValueMember = "Val";
 
 
             //初始化设置Redis
@@ -78,7 +78,8 @@ namespace BiqugeSpeeker
             if (comboBox.SelectedItem != null)
             {
                 int val = (comboBox.SelectedItem as PerInfo).Val;
-                redisConfigInfo._AddKey<int>(comboBox.Name, val);
+                if (val > 0)
+                    redisConfigInfo._AddKey<int>(comboBox.Name, val);
             }
         }
     }

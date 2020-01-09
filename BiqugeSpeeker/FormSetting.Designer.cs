@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.per = new System.Windows.Forms.ComboBox();
             this.vol = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,7 +45,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.per);
             this.groupBox1.Controls.Add(this.vol);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -61,15 +61,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "朗读设置";
             // 
-            // comboBox1
+            // per
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(133, 209);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(310, 23);
-            this.comboBox1.TabIndex = 2;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.per.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.per.FormattingEnabled = true;
+            this.per.Location = new System.Drawing.Point(133, 209);
+            this.per.Name = "per";
+            this.per.Size = new System.Drawing.Size(310, 23);
+            this.per.TabIndex = 2;
+            this.per.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // vol
             // 
@@ -164,7 +164,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TrackBar spd;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox per;
         private System.Windows.Forms.TrackBar vol;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

@@ -37,6 +37,7 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.pnlDetail = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -66,7 +67,6 @@
             this.服务器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.小说设置SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
@@ -77,6 +77,7 @@
             this.groupBox2.SuspendLayout();
             this.pnlDetail.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel4.SuspendLayout();
             this.pnlBookInfo.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -85,7 +86,6 @@
             this.groupBox3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -179,6 +179,17 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(761, 52);
             this.panel5.TabIndex = 2;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(406, 8);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(216, 32);
+            this.axWindowsMediaPlayer1.TabIndex = 1;
             // 
             // button4
             // 
@@ -486,15 +497,6 @@
             this.关于AToolStripMenuItem.Size = new System.Drawing.Size(94, 26);
             this.关于AToolStripMenuItem.Text = "关于（&A）";
             // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(409, 12);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(57, 30);
-            this.axWindowsMediaPlayer1.TabIndex = 1;
-            // 
             // bindingSource2
             // 
             this.bindingSource2.DataSource = typeof(BiqugeSpeeker.BookInfo);
@@ -524,6 +526,7 @@
             this.groupBox2.ResumeLayout(false);
             this.pnlDetail.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.pnlBookInfo.ResumeLayout(false);
             this.pnlBookInfo.PerformLayout();
@@ -535,7 +538,6 @@
             this.panel2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
