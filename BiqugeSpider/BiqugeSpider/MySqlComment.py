@@ -8,7 +8,7 @@ class MySqlComment():
     port=62650
     user='root'
     password='ww313345335'
-    defaultDb='Biquge1'
+    defaultDb='Biquge'
 
     def __init__(self, *args, **kwargs):
 
@@ -34,7 +34,7 @@ class MySqlComment():
     def IniMysql(self):
          #创建数据库
       conn=pymysql.connect(host=self.host,port=self.port,user=self.user,password=self.password,database='mysql')
-      sql='create database if not exists Biquge1'
+      sql='create database if not exists Biquge'
       cursor=conn.cursor()
       cursor.execute(sql)
       cursor.close()

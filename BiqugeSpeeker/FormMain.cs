@@ -147,21 +147,7 @@ namespace BiqugeSpeeker
             pnlBookInfo.Visible = false;
             pnlDetail.Visible = false;
             pnlList.Visible = true;
-            BookInfo bookInfo = bindingSource1.DataSource as BookInfo;
-            //初始化小说列表
-            DataSet dataSet = dbProvider.ExecuteDataSet($"select Title,DId from BookContent where Id='{bookInfo.Id}' order by cast(Chapter as decimal(6,0))");
-            List<BookInfo> bookInfos = new List<BookInfo>();
-            foreach (DataRow item in dataSet.Tables[0].Rows)
-            {
-                bookInfos.Add(new BookInfo()
-                {
-                    Id = item[1].ToString(),
-                    BookName = item[0].ToString()
-                });
-            }
-
-            listBox2.DataSource = bookInfos;
-            listBox2.DisplayMember = "BookName";
+            SetChapterLst();
         }
 
 
@@ -208,10 +194,29 @@ namespace BiqugeSpeeker
             DataRow dataRow = dataSet.Tables[0].Rows[0];
             BookInfo bookInfo = new BookInfo()
             {
-                Desc1 = dataRow["Content"].ToString(),
+                Desc1 = dataRow["Content"].ToString().Replace("笔趣阁手机端  http://m.biquwu.cc    ", ""),
                 BookName = dataRow["Title"].ToString(),
             };
             bindingSource2.DataSource = bookInfo;
+        }
+
+        private void SetChapterLst(string order="asc")
+        {
+            BookInfo bookInfo = bindingSource1.DataSource as BookInfo;
+            //初始化小说列表
+            DataSet dataSet = dbProvider.ExecuteDataSet($"select Title,DId from BookContent where Id='{bookInfo.Id}' order by cast(Chapter as decimal(6,0)) {order}");
+            List<BookInfo> bookInfos = new List<BookInfo>();
+            foreach (DataRow item in dataSet.Tables[0].Rows)
+            {
+                bookInfos.Add(new BookInfo()
+                {
+                    Id = item[1].ToString(),
+                    BookName = item[0].ToString()
+                });
+            }
+
+            listBox2.DataSource = bookInfos;
+            listBox2.DisplayMember = "BookName";
         }
 
         /// <summary>
@@ -289,7 +294,9 @@ namespace BiqugeSpeeker
             //请求资源
             if (!string.IsNullOrEmpty(bookInfo.Desc1))
             {
-                foreach (var item in bookInfo.Desc1.Split('。', '，', '；', ',', '.'))
+                string[] content = bookInfo.Desc1.Split('。', '，', '；', ',', '.');
+                int current = 1;
+                foreach (var item in content)
                 {
                     if (string.IsNullOrEmpty(item))
                     {
@@ -301,13 +308,14 @@ namespace BiqugeSpeeker
                         string text = item.Substring(i * 50, Math.Min(item.Substring(i * 50).Length, 50));
                         filePath = Path.Combine(dir, index + ".mp3");
                         baiduApi.GetAudio(filePath, text);
-                        backgroundWorker1.ReportProgress(0, filePath);
+                        backgroundWorker1.ReportProgress((int)(current*100/content.Length), filePath);
                         //播放文字长度
                         int start = bookInfo.Desc1.IndexOf(text, lastLen);
                         lastLen = start + Math.Min(item.Substring(i * 50).Length, 50);
                         keyValuePairs.Add(index, new int[] { start, Math.Min(item.Substring(i * 50).Length, 50) });
                         index++;
                     }
+                    current++;
                 }
             }
         }
@@ -316,6 +324,8 @@ namespace BiqugeSpeeker
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            toolStripProgressBar1.Visible = true;
+            toolStripProgressBar1.Value = e.ProgressPercentage;
             string filePath = e.UserState.ToString();
             IWMPMedia media = axWindowsMediaPlayer1.newMedia(filePath); //参数为歌曲路径
             playList.appendItem(media);
@@ -335,13 +345,57 @@ namespace BiqugeSpeeker
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
+            toolStripProgressBar1.Visible = false;
         }
 
         private void 小说设置SToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormSetting formSetting = new FormSetting(this);
             formSetting.ShowDialog();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            string text = textBox2.Text;
+            if (text == "请输入小说名"||string.IsNullOrWhiteSpace(text))
+                return;
+            DataSet dataSet = dbProvider.ExecuteDataSet($"select BookName,Id from BookBasic where BookName like '%{text}%'");
+            if (dataSet != null)
+            {
+                List<BookInfo> bookInfos = new List<BookInfo>();
+                foreach (DataRow item in dataSet.Tables[0].Rows)
+                {
+                    bookInfos.Add(new BookInfo()
+                    {
+                        Id = item[1].ToString(),
+                        BookName = item[0].ToString()
+                    });
+                }
+
+                listBox1.DataSource = bookInfos;
+            }
+        }
+
+        private void textBox2_Enter(object sender, EventArgs e)
+        {
+            if (textBox2.Text=="请输入小说名")
+            {
+                textBox2.Text = string.Empty;
+            }
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                textBox2.Text = "请输入小说名";
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LinkLabel linkLabel = sender as LinkLabel;
+            SetChapterLst(linkLabel.Name.Contains("1") ? "asc" : "desc");
         }
     }
 

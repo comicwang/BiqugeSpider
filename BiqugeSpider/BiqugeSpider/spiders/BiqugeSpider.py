@@ -19,23 +19,39 @@ class BiqugeSpider(scrapy.Spider):
 
     domainUrl="https://www.biduo.cc/"
 
-    url = "https://www.biduo.cc/quanbu/"
+    url = "https://www.biduo.cc/"
 
-    start_urls = ["https://www.biduo.cc/quanbu/"]
+    #默认爬取完本小说
+    start_urls = ["https://www.biduo.cc/quanbu/"]  
+
+    p=None
 
     mysql=MySqlComment()
 
-    def __init__(self, name=None, **kwargs):
-           self.mysql.IniMysql()
+    def __init__(self, name=None,p=None,**kwargs):
+        if p:
+            self.p=p
+            self.start_urls[0]="https://www.biduo.cc/search.php?q="+ p;
+        self.mysql.IniMysql()
           
     def parse(self, response):  
         index=0
-        #检索小说
-        for each in response.xpath("//*[@id='main']/div[1]/ul/li"):
-            if index>0:
-                src=each.xpath(".//span[2]/a")[0].attrib['href']
-                yield scrapy.Request(self.domainUrl+ src, callback = self.BookBasic,dont_filter=False) 
-            index=index+1
+        #检索小说 /html/body/div[4]/div
+        if self.p:
+            for each in response.xpath("//*[@class='search-result-page-main']/a"):
+               src=each.attrib['href']
+               yield scrapy.Request(self.domainUrl+ src, callback = self.ParsePage,dont_filter=False)            
+        else:
+            for each in response.xpath("//*[@id='main']/div[1]/ul/li"):
+                if index>0:
+                    src=each.xpath(".//span[2]/a")[0].attrib['href']
+                    yield scrapy.Request(self.domainUrl+ src, callback = self.BookBasic,dont_filter=False) 
+                index=index+1
+
+    def ParsePage(self,response):
+        for each in response.xpath("//*[@class='result-list']/div"):
+            src=each.xpath(".//div/a")[0].attrib['href']
+            yield scrapy.Request(self.domainUrl+ src, callback = self.BookBasic,dont_filter=False) 
 
     def BookBasic(self,response):
         Id=uuid.uuid1()
@@ -59,17 +75,21 @@ class BiqugeSpider(scrapy.Spider):
         #查询所有章节
         list=self.mysql.Query("select Title from BookContent where Id='{0}'".format(str(Id)))
         index=0
+        listName=[]
         for each in response.xpath("//*[@id='list']/dl/dd"):
              try:                                             
                  src= each.xpath(".//a")[0].attrib['href']
                  title=each.xpath("string(.//a)")[0].root.strip()
                  if self.InTable(list,title):
-                     print(each.xpath("string(.//a)")[0].root.strip(),"已经入库...")
+                     print(title,"已经入库...")
+                 elif title in listName:
+                     print(title,"重复章节...")                
                  else:
                      request= scrapy.Request(self.domainUrl+ src, callback = self.BookContent,dont_filter=False)   
                      request.meta['id']=Id
                      request.meta['Chapter']=index
                      index=index+1
+                     listName.append(title)
                      yield request
              except Exception as e:
                  print("analysis item error:"+item["title"]+ e);
