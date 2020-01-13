@@ -296,8 +296,9 @@ namespace BiqugeSpeeker
             {
                 string[] content = bookInfo.Desc1.Split('。', '，', '；', ',', '.');
                 int current = 1;
-                foreach (var item in content)
+                foreach (var txt in content)
                 {
+                    string item = txt.Trim();
                     if (string.IsNullOrEmpty(item))
                     {
                         continue;

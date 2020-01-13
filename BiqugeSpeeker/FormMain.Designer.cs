@@ -103,7 +103,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1099, 544);
+            this.panel1.Size = new System.Drawing.Size(1099, 548);
             this.panel1.TabIndex = 1;
             // 
             // splitContainer1
@@ -123,7 +123,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.pnlDetail);
             this.splitContainer1.Panel2.Controls.Add(this.pnlList);
             this.splitContainer1.Panel2.Controls.Add(this.pnlBookInfo);
-            this.splitContainer1.Size = new System.Drawing.Size(1099, 544);
+            this.splitContainer1.Size = new System.Drawing.Size(1099, 548);
             this.splitContainer1.SplitterDistance = 334;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -136,7 +136,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(334, 544);
+            this.groupBox2.Size = new System.Drawing.Size(334, 548);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "小说列表";
@@ -149,7 +149,7 @@
             this.listBox1.Location = new System.Drawing.Point(3, 45);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(328, 497);
+            this.listBox1.Size = new System.Drawing.Size(328, 501);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -170,7 +170,7 @@
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 544);
+            this.splitter1.Size = new System.Drawing.Size(3, 548);
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
             // 
@@ -182,7 +182,7 @@
             this.pnlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDetail.Location = new System.Drawing.Point(0, 0);
             this.pnlDetail.Name = "pnlDetail";
-            this.pnlDetail.Size = new System.Drawing.Size(761, 544);
+            this.pnlDetail.Size = new System.Drawing.Size(761, 548);
             this.pnlDetail.TabIndex = 1;
             // 
             // richTextBox1
@@ -192,7 +192,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 53);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(761, 439);
+            this.richTextBox1.Size = new System.Drawing.Size(761, 443);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
@@ -209,7 +209,7 @@
             this.panel5.Controls.Add(this.button2);
             this.panel5.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSource2, "BookName", true));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 492);
+            this.panel5.Location = new System.Drawing.Point(0, 496);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(761, 52);
             this.panel5.TabIndex = 2;
@@ -294,7 +294,7 @@
             this.pnlList.Location = new System.Drawing.Point(0, 0);
             this.pnlList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(761, 544);
+            this.pnlList.Size = new System.Drawing.Size(761, 548);
             this.pnlList.TabIndex = 17;
             // 
             // groupBox3
@@ -305,7 +305,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(761, 506);
+            this.groupBox3.Size = new System.Drawing.Size(761, 510);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "文章列表";
@@ -318,7 +318,7 @@
             this.listBox2.Location = new System.Drawing.Point(3, 20);
             this.listBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(755, 484);
+            this.listBox2.Size = new System.Drawing.Size(755, 488);
             this.listBox2.TabIndex = 0;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
@@ -384,7 +384,7 @@
             this.pnlBookInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlBookInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlBookInfo.Name = "pnlBookInfo";
-            this.pnlBookInfo.Size = new System.Drawing.Size(761, 544);
+            this.pnlBookInfo.Size = new System.Drawing.Size(761, 548);
             this.pnlBookInfo.TabIndex = 6;
             // 
             // button1
@@ -427,7 +427,7 @@
             // 
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Desc1", true));
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(0, 247);
+            this.textBox1.Location = new System.Drawing.Point(0, 251);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -553,10 +553,10 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 572);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 576);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.statusStrip1.Size = new System.Drawing.Size(1099, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1099, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
