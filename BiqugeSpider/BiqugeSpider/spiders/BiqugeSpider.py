@@ -32,11 +32,12 @@ class BiqugeSpider(scrapy.Spider):
         if p:
             self.p=p
             self.start_urls[0]="https://www.biduo.cc/search.php?q="+ p;
+        #初始化mysql数据库
         self.mysql.IniMysql()
           
     def parse(self, response):  
         index=0
-        #检索小说 /html/body/div[4]/div
+        #检索小说（这里通过判断关键字来进行全文或者关键字爬取）
         if self.p:
             for each in response.xpath("//*[@class='search-result-page-main']/a"):
                src=each.attrib['href']
@@ -48,11 +49,13 @@ class BiqugeSpider(scrapy.Spider):
                     yield scrapy.Request(self.domainUrl+ src, callback = self.BookBasic,dont_filter=False) 
                 index=index+1
 
+    #获取分页内容，进行关键字深度爬取
     def ParsePage(self,response):
         for each in response.xpath("//*[@class='result-list']/div"):
             src=each.xpath(".//div/a")[0].attrib['href']
             yield scrapy.Request(self.domainUrl+ src, callback = self.BookBasic,dont_filter=False) 
 
+    #获取小说基本信息，同时让调度器爬取小说内容
     def BookBasic(self,response):
         Id=uuid.uuid1()
         BookName=response.xpath("string(//*[@id='info']/h1)")[0].root.strip()  
@@ -94,6 +97,7 @@ class BiqugeSpider(scrapy.Spider):
              except Exception as e:
                  print("analysis item error:"+item["title"]+ e);
 
+    #爬取每个章节小说内容
     def BookContent(self,response):
         try:
             item=BiqugespiderItem()

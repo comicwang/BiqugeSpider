@@ -357,7 +357,7 @@ namespace BiqugeSpeeker
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             string text = textBox2.Text;
-            if (text == "请输入小说名"||string.IsNullOrWhiteSpace(text))
+            if (text == "请输入小说名")
                 return;
             DataSet dataSet = dbProvider.ExecuteDataSet($"select BookName,Id from BookBasic where BookName like '%{text}%'");
             if (dataSet != null)
