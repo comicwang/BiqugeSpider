@@ -28,15 +28,20 @@ class BiqugeSpider(scrapy.Spider):
     
     r=None
 
+    c=None
+
     mysql=MySqlComment()
 
-    def __init__(self, name=None,p=None,r=None,**kwargs):
+    def __init__(self, name=None,p=None,r=None,c=None,**kwargs):
         if p:
             self.p=p
             self.start_urls[0]="https://www.biduo.cc/search.php?q="+ p;
         if r:
             self.r=r
             self.start_urls[0]="https://www.biduo.cc";
+        if c:
+            self.c=c
+            self.start_urls[0]="https://www.biduo.cc/book_"+ c +"_1/"
         #初始化mysql数据库
         self.mysql.IniMysql()
           
@@ -50,6 +55,10 @@ class BiqugeSpider(scrapy.Spider):
         elif self.r:
             for each in response.xpath("//*[@id='newscontent']/div[2]/ul/li"):
                 src=each.xpath(".//span[2]/a")[0].attrib['href']
+                yield scrapy.Request(self.domainUrl+ src, callback = self.BookBasic,dont_filter=False) 
+        elif self.c:
+            for each in response.xpath("//*[@id='newscontent']/div[2]/ul/li"):
+                src=each.xpath(".//span[1]/a")[0].attrib['href']
                 yield scrapy.Request(self.domainUrl+ src, callback = self.BookBasic,dont_filter=False) 
         else:
             for each in response.xpath("//*[@id='main']/div[1]/ul/li"):

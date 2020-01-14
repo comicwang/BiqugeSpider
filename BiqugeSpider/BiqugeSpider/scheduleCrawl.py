@@ -10,8 +10,8 @@ from scrapy import cmdline
 def crawl_work():
     print("I'm working...")
     print('-'*100)
-    #爬取策略 p-关键字爬取 r-最近数据爬取 
-    args = ["scrapy", "crawl", 'BiqugeSpider','-a','r=1']
+    #爬取策略 p-关键字爬取 r-最新数据爬取  c-类别爬取 （1-玄幻 2-武侠 3-都市 4-历史 6-网游 7-科幻 8-恐怖 10-其他）
+    args = ["scrapy", "crawl", 'BiqugeSpider','-a','c=8']
     while True:
         start = time.time()
         p = Process(target=cmdline.execute, args=(args,))
