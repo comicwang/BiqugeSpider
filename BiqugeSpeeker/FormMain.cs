@@ -269,7 +269,7 @@ namespace BiqugeSpeeker
         private void GetBookList(string order="desc")
         {
             string catelog = comboBox1.SelectedItem.ToString();
-            string sql = $"select BookName,Id,Catelog from BookBasic";
+            string sql = $"select BookName,Id,Catelog from BookBasic where 1=1";
             if (catelog != "所有类别")
             {
                 sql = $"select BookName,Id,Catelog,LatestTime from BookBasic where Catelog='{catelog}'";
