@@ -25,13 +25,18 @@ class BiqugeSpider(scrapy.Spider):
     start_urls = ["https://www.biduo.cc/quanbu/"]  
 
     p=None
+    
+    r=None
 
     mysql=MySqlComment()
 
-    def __init__(self, name=None,p=None,**kwargs):
+    def __init__(self, name=None,p=None,r=None,**kwargs):
         if p:
             self.p=p
             self.start_urls[0]="https://www.biduo.cc/search.php?q="+ p;
+        if r:
+            self.r=r
+            self.start_urls[0]="https://www.biduo.cc";
         #初始化mysql数据库
         self.mysql.IniMysql()
           
@@ -41,7 +46,11 @@ class BiqugeSpider(scrapy.Spider):
         if self.p:
             for each in response.xpath("//*[@class='search-result-page-main']/a"):
                src=each.attrib['href']
-               yield scrapy.Request(self.domainUrl+ src, callback = self.ParsePage,dont_filter=False)            
+               yield scrapy.Request(self.domainUrl+ src, callback = self.ParsePage,dont_filter=False)     
+        elif self.r:
+            for each in response.xpath("//*[@id='newscontent']/div[2]/ul/li"):
+                src=each.xpath(".//span[2]/a")[0].attrib['href']
+                yield scrapy.Request(self.domainUrl+ src, callback = self.BookBasic,dont_filter=False) 
         else:
             for each in response.xpath("//*[@id='main']/div[1]/ul/li"):
                 if index>0:
@@ -59,8 +68,10 @@ class BiqugeSpider(scrapy.Spider):
     def BookBasic(self,response):
         Id=uuid.uuid1()
         BookName=response.xpath("string(//*[@id='info']/h1)")[0].root.strip()  
+        LatestTime=response.xpath("string(//*[@id='info']/p[3])")[0].root.strip().split('：')[1]
         Author=response.xpath("string(//*[@id='info']/p)")[0].root.strip().split('：')[1]
         imgSrc=response.xpath("//*[@id='fmimg']/img")[0].attrib['src']
+        Catelog=response.xpath("string(//*[@class='con_top']/a[2])")[0].root.strip()
         img= requests.get(imgSrc)
         Image= img.content
         LatestChapter=response.xpath("string(//*[@id='info']/p[4]/a)")[0].root.strip()
@@ -71,10 +82,10 @@ class BiqugeSpider(scrapy.Spider):
            # 获取小说信息          
            Id=uuid.uuid1()
            #插入数据
-           self.mysql.ExecuteSql("insert into BookBasic (BookName,Author,Image,LatestChapter,Desc1,Id) values(%s,%s,%s,%s,%s,%s)",(str(BookName),str(Author),Image,str(LatestChapter),str(Desc1),str(Id)))
+           self.mysql.ExecuteSql("insert into BookBasic (BookName,Author,Image,LatestChapter,Desc1,Id,LatestTime,Catelog) values(%s,%s,%s,%s,%s,%s,%s,%s)",(str(BookName),str(Author),Image,str(LatestChapter),str(Desc1),str(Id),datetime.datetime.strptime(LatestTime, "%Y-%m-%d %H:%M:%S"),str(Catelog)))
         else:
             Id=resp[0][0]
-            self.mysql.ExecuteSql("update BookBasic set LatestChapter=%s,Desc1=%s where Id=%s",(str(LatestChapter),str(Desc1),str(Id)))
+            self.mysql.ExecuteSql("update BookBasic set LatestChapter=%s,Desc1=%s,LatestTime=%s,Catelog=%s where Id=%s",(str(LatestChapter),str(Desc1),datetime.datetime.strptime(LatestTime, "%Y-%m-%d %H:%M:%S"),str(Catelog),str(Id)))
         #查询所有章节
         list=self.mysql.Query("select Title from BookContent where Id='{0}'".format(str(Id)))
         index=0

@@ -30,7 +30,7 @@ namespace BiqugeSpeeker
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            DataSet dataSet= dbProvider.ExecuteDataSet($"select BookName,Id from BookBasic");
+            DataSet dataSet = dbProvider.ExecuteDataSet($"select BookName,Id,Catelog,LatestTime from BookBasic order by LatestTime");
             if (dataSet != null)
             {
                 List<BookInfo> bookInfos = new List<BookInfo>();
@@ -39,20 +39,28 @@ namespace BiqugeSpeeker
                     bookInfos.Add(new BookInfo()
                     {
                         Id = item[1].ToString(),
-                        BookName = item[0].ToString()
+                        BookName = item[0].ToString(),
+                        Catelog = item[2].ToString()
                     });
                 }
 
                 listBox1.DataSource = bookInfos;
                 listBox1.DisplayMember = "BookName";
-            }         
-            playList= axWindowsMediaPlayer1.playlistCollection.newPlaylist("MyPlayList");
+
+                comboBox1.Items.Add("所有类别");
+                comboBox1.Items.AddRange(bookInfos.Select(t => t.Catelog).Distinct().ToArray());
+                comboBox1.Text = "所有类别";
+            }
+
+            playList = axWindowsMediaPlayer1.playlistCollection.newPlaylist("MyPlayList");
             axWindowsMediaPlayer1.currentPlaylist = playList;
             axWindowsMediaPlayer1.PlayStateChange += AxWindowsMediaPlayer1_PlayStateChange;
 
-           // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Underline | FontStyle.Bold);
+            // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Underline | FontStyle.Bold);
             richTextBox1.SelectionBackColor = SystemColors.Highlight;
         }
+
+        private bool isplayed = false;
 
         private void AxWindowsMediaPlayer1_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
@@ -64,6 +72,7 @@ namespace BiqugeSpeeker
 
             if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsMediaEnded)
             {
+                isplayed = true;
                 played++;
                 //最后一个
                 if (played > 0 && played == playList.count)
@@ -116,7 +125,10 @@ namespace BiqugeSpeeker
                 DataRow dataRow = dataSet.Tables[0].Rows[0];
                 bookInfo.Author = dataRow["Author"].ToString();
                 bookInfo.LatestChapter = dataRow["LatestChapter"].ToString();
+                bookInfo.Catelog = dataRow["Catelog"].ToString();
                 bookInfo.Desc1 = dataRow["Desc1"].ToString();
+                if (dataRow["LatestTime"] != null)
+                    bookInfo.LatestTime = DateTime.Parse(dataRow["LatestTime"].ToString());
                 try
                 {
                     bookInfo.Image = (byte[])dataRow["Image"];
@@ -153,7 +165,7 @@ namespace BiqugeSpeeker
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -187,6 +199,10 @@ namespace BiqugeSpeeker
             }
         }
 
+        /// <summary>
+        /// 获取章节详细信息
+        /// </summary>
+        /// <param name="Id"></param>
         private void SetDetail(string Id)
         {
             //初始化小说列表
@@ -200,7 +216,11 @@ namespace BiqugeSpeeker
             bindingSource2.DataSource = bookInfo;
         }
 
-        private void SetChapterLst(string order="asc")
+        /// <summary>
+        /// 获取章节信息
+        /// </summary>
+        /// <param name="order"></param>
+        private void SetChapterLst(string order = "asc")
         {
             BookInfo bookInfo = bindingSource1.DataSource as BookInfo;
             //初始化小说列表
@@ -242,6 +262,43 @@ namespace BiqugeSpeeker
             }
         }
 
+        /// <summary>
+        /// 获取书本类别信息
+        /// </summary>
+        /// <param name="order"></param>
+        private void GetBookList(string order="desc")
+        {
+            string catelog = comboBox1.SelectedItem.ToString();
+            string sql = $"select BookName,Id,Catelog from BookBasic";
+            if (catelog != "所有类别")
+            {
+                sql = $"select BookName,Id,Cateloge,LatestTime from BookBasic where Catelog='{catelog}'";
+            }
+            string text = textBox2.Text;
+            if (text != "请输入小说名")
+            {
+                sql += $" and BookName like '%{text}%'";
+            }
+            sql += $" order by LatestTime {order}";
+
+            DataSet dataSet = dbProvider.ExecuteDataSet(sql);
+            if (dataSet != null)
+            {
+                List<BookInfo> bookInfos = new List<BookInfo>();
+                foreach (DataRow item in dataSet.Tables[0].Rows)
+                {
+                    bookInfos.Add(new BookInfo()
+                    {
+                        Id = item[1].ToString(),
+                        BookName = item[0].ToString(),
+                        Catelog = item[2].ToString()
+                    });
+                }
+
+                listBox1.DataSource = bookInfos;
+            }
+        }
+
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
             pnlBookInfo.Visible = false;
@@ -271,7 +328,7 @@ namespace BiqugeSpeeker
             if (backgroundWorker1.IsBusy)
                 backgroundWorker1.CancelAsync();
             backgroundWorker1.RunWorkerAsync(bookInfo);
-         
+
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -306,15 +363,20 @@ namespace BiqugeSpeeker
                     int len = item.Length;
                     for (int i = 0; i <= len / 50; i++)
                     {
+                        isplayed = false;
                         string text = item.Substring(i * 50, Math.Min(item.Substring(i * 50).Length, 50));
                         filePath = Path.Combine(dir, index + ".mp3");
                         baiduApi.GetAudio(filePath, text);
-                        backgroundWorker1.ReportProgress((int)(current*100/content.Length), filePath);
+                        backgroundWorker1.ReportProgress((int)(current * 100 / content.Length), filePath);
                         //播放文字长度
                         int start = bookInfo.Desc1.IndexOf(text, lastLen);
                         lastLen = start + Math.Min(item.Substring(i * 50).Length, 50);
                         keyValuePairs.Add(index, new int[] { start, Math.Min(item.Substring(i * 50).Length, 50) });
                         index++;
+                        while (isplayed == false)
+                        {
+
+                        }
                     }
                     current++;
                 }
@@ -357,29 +419,12 @@ namespace BiqugeSpeeker
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            string text = textBox2.Text;
-            if (text == "请输入小说名")
-                return;
-            DataSet dataSet = dbProvider.ExecuteDataSet($"select BookName,Id from BookBasic where BookName like '%{text}%'");
-            if (dataSet != null)
-            {
-                List<BookInfo> bookInfos = new List<BookInfo>();
-                foreach (DataRow item in dataSet.Tables[0].Rows)
-                {
-                    bookInfos.Add(new BookInfo()
-                    {
-                        Id = item[1].ToString(),
-                        BookName = item[0].ToString()
-                    });
-                }
-
-                listBox1.DataSource = bookInfos;
-            }
+            GetBookList();
         }
 
         private void textBox2_Enter(object sender, EventArgs e)
         {
-            if (textBox2.Text=="请输入小说名")
+            if (textBox2.Text == "请输入小说名")
             {
                 textBox2.Text = string.Empty;
             }
@@ -398,6 +443,17 @@ namespace BiqugeSpeeker
             LinkLabel linkLabel = sender as LinkLabel;
             SetChapterLst(linkLabel.Name.Contains("1") ? "asc" : "desc");
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetBookList();
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LinkLabel linkLabel = sender as LinkLabel;
+            GetBookList(linkLabel.Name.Contains("5") ? "asc" : "desc");
+        }
     }
 
     public class BookInfo
@@ -413,6 +469,10 @@ namespace BiqugeSpeeker
         public string Author { get; set; }
 
         public string LatestChapter { get; set; }
+
+        public DateTime LatestTime { get; set; }
+
+        public string Catelog { get; set; }
 
 
     }

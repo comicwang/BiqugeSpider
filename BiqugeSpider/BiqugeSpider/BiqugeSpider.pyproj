@@ -29,6 +29,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pipelines.py" />
+    <Compile Include="scheduleCrawl.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="settings.py" />
     <Compile Include="spiders\BiqugeSpider.py">
       <SubType>Code</SubType>

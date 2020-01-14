@@ -1,5 +1,5 @@
 from scrapy.cmdline import execute
 import sys
 
-execute(['scrapy', 'crawl', 'BiqugeSpider','-a','p=莽荒纪']);
+execute(['scrapy', 'crawl', 'BiqugeSpider','-a','r=1']);
 

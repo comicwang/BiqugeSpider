@@ -36,11 +36,21 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.pnlBookInfo = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblLatestChapter = new System.Windows.Forms.LinkLabel();
+            this.lblLastTime = new System.Windows.Forms.LinkLabel();
+            this.lblAuthor = new System.Windows.Forms.LinkLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlDetail = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.panel5 = new System.Windows.Forms.Panel();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -54,19 +64,6 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblBack = new System.Windows.Forms.LinkLabel();
-            this.pnlBookInfo = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblLatestChapter = new System.Windows.Forms.LinkLabel();
-            this.lblLastTime = new System.Windows.Forms.LinkLabel();
-            this.lblAuthor = new System.Windows.Forms.LinkLabel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.服务器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,26 +71,36 @@
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.pnlBookInfo.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlDetail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel4.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.pnlBookInfo.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -120,9 +127,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitter1);
+            this.splitContainer1.Panel2.Controls.Add(this.pnlBookInfo);
             this.splitContainer1.Panel2.Controls.Add(this.pnlDetail);
             this.splitContainer1.Panel2.Controls.Add(this.pnlList);
-            this.splitContainer1.Panel2.Controls.Add(this.pnlBookInfo);
             this.splitContainer1.Size = new System.Drawing.Size(1099, 548);
             this.splitContainer1.SplitterDistance = 334;
             this.splitContainer1.TabIndex = 0;
@@ -131,6 +138,7 @@
             // 
             this.groupBox2.Controls.Add(this.listBox1);
             this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.panel6);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -146,17 +154,17 @@
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(3, 45);
+            this.listBox1.Location = new System.Drawing.Point(3, 78);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(328, 501);
+            this.listBox1.Size = new System.Drawing.Size(328, 468);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox2.Location = new System.Drawing.Point(3, 20);
+            this.textBox2.Location = new System.Drawing.Point(3, 53);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(328, 25);
             this.textBox2.TabIndex = 1;
@@ -173,6 +181,145 @@
             this.splitter1.Size = new System.Drawing.Size(3, 548);
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
+            // 
+            // pnlBookInfo
+            // 
+            this.pnlBookInfo.Controls.Add(this.button1);
+            this.pnlBookInfo.Controls.Add(this.panel3);
+            this.pnlBookInfo.Controls.Add(this.textBox1);
+            this.pnlBookInfo.Controls.Add(this.lblLatestChapter);
+            this.pnlBookInfo.Controls.Add(this.lblLastTime);
+            this.pnlBookInfo.Controls.Add(this.linkLabel3);
+            this.pnlBookInfo.Controls.Add(this.lblAuthor);
+            this.pnlBookInfo.Controls.Add(this.label6);
+            this.pnlBookInfo.Controls.Add(this.label4);
+            this.pnlBookInfo.Controls.Add(this.label1);
+            this.pnlBookInfo.Controls.Add(this.label3);
+            this.pnlBookInfo.Controls.Add(this.pictureBox1);
+            this.pnlBookInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBookInfo.Location = new System.Drawing.Point(0, 0);
+            this.pnlBookInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlBookInfo.Name = "pnlBookInfo";
+            this.pnlBookInfo.Size = new System.Drawing.Size(761, 548);
+            this.pnlBookInfo.TabIndex = 6;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(357, 159);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 27);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "开始阅读";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(761, 38);
+            this.panel3.TabIndex = 18;
+            // 
+            // label2
+            // 
+            this.label2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "BookName", true));
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(761, 38);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "小说名";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox1
+            // 
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Desc1", true));
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBox1.Location = new System.Drawing.Point(0, 251);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(761, 297);
+            this.textBox1.TabIndex = 16;
+            // 
+            // lblLatestChapter
+            // 
+            this.lblLatestChapter.AutoSize = true;
+            this.lblLatestChapter.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "LatestChapter", true));
+            this.lblLatestChapter.LinkColor = System.Drawing.SystemColors.ControlText;
+            this.lblLatestChapter.Location = new System.Drawing.Point(240, 109);
+            this.lblLatestChapter.Name = "lblLatestChapter";
+            this.lblLatestChapter.Size = new System.Drawing.Size(52, 15);
+            this.lblLatestChapter.TabIndex = 12;
+            this.lblLatestChapter.TabStop = true;
+            this.lblLatestChapter.Text = "第一章";
+            // 
+            // lblLastTime
+            // 
+            this.lblLastTime.AutoSize = true;
+            this.lblLastTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "LatestTime", true));
+            this.lblLastTime.LinkColor = System.Drawing.SystemColors.ControlText;
+            this.lblLastTime.Location = new System.Drawing.Point(468, 59);
+            this.lblLastTime.Name = "lblLastTime";
+            this.lblLastTime.Size = new System.Drawing.Size(71, 15);
+            this.lblLastTime.TabIndex = 13;
+            this.lblLastTime.TabStop = true;
+            this.lblLastTime.Text = "2019-1-1";
+            // 
+            // lblAuthor
+            // 
+            this.lblAuthor.AutoSize = true;
+            this.lblAuthor.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Author", true));
+            this.lblAuthor.LinkColor = System.Drawing.SystemColors.ControlText;
+            this.lblAuthor.Location = new System.Drawing.Point(240, 59);
+            this.lblAuthor.Name = "lblAuthor";
+            this.lblAuthor.Size = new System.Drawing.Size(37, 15);
+            this.lblAuthor.TabIndex = 15;
+            this.lblAuthor.TabStop = true;
+            this.lblAuthor.Text = "张三";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(152, 109);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 15);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "最新章节：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(345, 59);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 15);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "最后更新时间：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(152, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 15);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "作    者：";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(7, 42);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(120, 150);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // pnlDetail
             // 
@@ -196,10 +343,6 @@
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
-            // bindingSource2
-            // 
-            this.bindingSource2.DataSource = typeof(BiqugeSpeeker.BookInfo);
-            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.axWindowsMediaPlayer1);
@@ -213,17 +356,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(761, 52);
             this.panel5.TabIndex = 2;
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(9, 10);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(216, 32);
-            this.axWindowsMediaPlayer1.TabIndex = 1;
             // 
             // button4
             // 
@@ -368,146 +500,6 @@
             this.lblBack.Text = "返回";
             this.lblBack.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblBack_LinkClicked);
             // 
-            // pnlBookInfo
-            // 
-            this.pnlBookInfo.Controls.Add(this.button1);
-            this.pnlBookInfo.Controls.Add(this.panel3);
-            this.pnlBookInfo.Controls.Add(this.textBox1);
-            this.pnlBookInfo.Controls.Add(this.lblLatestChapter);
-            this.pnlBookInfo.Controls.Add(this.lblLastTime);
-            this.pnlBookInfo.Controls.Add(this.lblAuthor);
-            this.pnlBookInfo.Controls.Add(this.label6);
-            this.pnlBookInfo.Controls.Add(this.label4);
-            this.pnlBookInfo.Controls.Add(this.label3);
-            this.pnlBookInfo.Controls.Add(this.pictureBox1);
-            this.pnlBookInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBookInfo.Location = new System.Drawing.Point(0, 0);
-            this.pnlBookInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlBookInfo.Name = "pnlBookInfo";
-            this.pnlBookInfo.Size = new System.Drawing.Size(761, 548);
-            this.pnlBookInfo.TabIndex = 6;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(155, 154);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 27);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "开始阅读";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(761, 38);
-            this.panel3.TabIndex = 18;
-            // 
-            // label2
-            // 
-            this.label2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "BookName", true));
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(761, 38);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "小说名";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(BiqugeSpeeker.BookInfo);
-            // 
-            // textBox1
-            // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Desc1", true));
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(0, 251);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(761, 297);
-            this.textBox1.TabIndex = 16;
-            // 
-            // lblLatestChapter
-            // 
-            this.lblLatestChapter.AutoSize = true;
-            this.lblLatestChapter.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "LatestChapter", true));
-            this.lblLatestChapter.LinkColor = System.Drawing.SystemColors.ControlText;
-            this.lblLatestChapter.Location = new System.Drawing.Point(240, 109);
-            this.lblLatestChapter.Name = "lblLatestChapter";
-            this.lblLatestChapter.Size = new System.Drawing.Size(52, 15);
-            this.lblLatestChapter.TabIndex = 12;
-            this.lblLatestChapter.TabStop = true;
-            this.lblLatestChapter.Text = "第一章";
-            // 
-            // lblLastTime
-            // 
-            this.lblLastTime.AutoSize = true;
-            this.lblLastTime.LinkColor = System.Drawing.SystemColors.ControlText;
-            this.lblLastTime.Location = new System.Drawing.Point(468, 59);
-            this.lblLastTime.Name = "lblLastTime";
-            this.lblLastTime.Size = new System.Drawing.Size(71, 15);
-            this.lblLastTime.TabIndex = 13;
-            this.lblLastTime.TabStop = true;
-            this.lblLastTime.Text = "2019-1-1";
-            // 
-            // lblAuthor
-            // 
-            this.lblAuthor.AutoSize = true;
-            this.lblAuthor.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Author", true));
-            this.lblAuthor.LinkColor = System.Drawing.SystemColors.ControlText;
-            this.lblAuthor.Location = new System.Drawing.Point(240, 59);
-            this.lblAuthor.Name = "lblAuthor";
-            this.lblAuthor.Size = new System.Drawing.Size(37, 15);
-            this.lblAuthor.TabIndex = 15;
-            this.lblAuthor.TabStop = true;
-            this.lblAuthor.Text = "张三";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(152, 109);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 15);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "最新章节：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(345, 59);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 15);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "最后更新时间：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(152, 59);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 15);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "作    者：";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(7, 42);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(120, 150);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
@@ -567,6 +559,89 @@
             this.toolStripProgressBar1.Size = new System.Drawing.Size(300, 18);
             this.toolStripProgressBar1.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(152, 165);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "分    类：";
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Catelog", true));
+            this.linkLabel3.LinkColor = System.Drawing.SystemColors.ControlText;
+            this.linkLabel3.Location = new System.Drawing.Point(240, 165);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(37, 15);
+            this.linkLabel3.TabIndex = 15;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "张三";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.linkLabel5);
+            this.panel6.Controls.Add(this.linkLabel4);
+            this.panel6.Controls.Add(this.comboBox1);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(3, 20);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(328, 33);
+            this.panel6.TabIndex = 2;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(7, 5);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(162, 23);
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(9, 10);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(216, 32);
+            this.axWindowsMediaPlayer1.TabIndex = 1;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(BiqugeSpeeker.BookInfo);
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(BiqugeSpeeker.BookInfo);
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(177, 9);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(67, 15);
+            this.linkLabel4.TabIndex = 1;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "时间倒序";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.Location = new System.Drawing.Point(249, 9);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(67, 15);
+            this.linkLabel5.TabIndex = 1;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "时间正序";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -588,24 +663,26 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.pnlBookInfo.ResumeLayout(false);
+            this.pnlBookInfo.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlDetail.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.pnlList.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.pnlBookInfo.ResumeLayout(false);
-            this.pnlBookInfo.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -656,6 +733,12 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.LinkLabel linkLabel5;
+        private System.Windows.Forms.LinkLabel linkLabel4;
     }
 }
 

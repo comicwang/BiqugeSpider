@@ -49,6 +49,8 @@ class MySqlComment():
                     LatestChapter varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '最新章节',
                     Desc1 varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '内容描述',
                     Id char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键',
+                    LatestTime datetime(0) NULL DEFAULT NULL COMMENT '最近更新时间',
+                    Catelog varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类',
                     PRIMARY KEY (`Id`) USING BTREE
                   ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
               """   
