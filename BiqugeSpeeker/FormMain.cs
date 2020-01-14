@@ -272,7 +272,7 @@ namespace BiqugeSpeeker
             string sql = $"select BookName,Id,Catelog from BookBasic";
             if (catelog != "所有类别")
             {
-                sql = $"select BookName,Id,Cateloge,LatestTime from BookBasic where Catelog='{catelog}'";
+                sql = $"select BookName,Id,Catelog,LatestTime from BookBasic where Catelog='{catelog}'";
             }
             string text = textBox2.Text;
             if (text != "请输入小说名")

@@ -35,6 +35,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.pnlBookInfo = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -43,14 +47,17 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblLatestChapter = new System.Windows.Forms.LinkLabel();
             this.lblLastTime = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.lblAuthor = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlDetail = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -71,34 +78,27 @@
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.pnlBookInfo.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlDetail.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel4.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
@@ -107,10 +107,10 @@
             // 
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1099, 548);
+            this.panel1.Size = new System.Drawing.Size(1099, 546);
             this.panel1.TabIndex = 1;
             // 
             // splitContainer1
@@ -127,10 +127,10 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitter1);
+            this.splitContainer1.Panel2.Controls.Add(this.pnlList);
             this.splitContainer1.Panel2.Controls.Add(this.pnlBookInfo);
             this.splitContainer1.Panel2.Controls.Add(this.pnlDetail);
-            this.splitContainer1.Panel2.Controls.Add(this.pnlList);
-            this.splitContainer1.Size = new System.Drawing.Size(1099, 548);
+            this.splitContainer1.Size = new System.Drawing.Size(1099, 546);
             this.splitContainer1.SplitterDistance = 334;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -144,7 +144,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(334, 548);
+            this.groupBox2.Size = new System.Drawing.Size(334, 546);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "小说列表";
@@ -152,12 +152,13 @@
             // listBox1
             // 
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
+            this.listBox1.ItemHeight = 27;
             this.listBox1.Location = new System.Drawing.Point(3, 78);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(328, 468);
+            this.listBox1.Size = new System.Drawing.Size(328, 466);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -173,12 +174,55 @@
             this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
             this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.linkLabel5);
+            this.panel6.Controls.Add(this.linkLabel4);
+            this.panel6.Controls.Add(this.comboBox1);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(3, 20);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(328, 33);
+            this.panel6.TabIndex = 2;
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.Location = new System.Drawing.Point(249, 9);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(67, 15);
+            this.linkLabel5.TabIndex = 1;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "时间正序";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(177, 9);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(67, 15);
+            this.linkLabel4.TabIndex = 1;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "时间倒序";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(7, 5);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(162, 23);
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 548);
+            this.splitter1.Size = new System.Drawing.Size(3, 546);
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
             // 
@@ -200,7 +244,7 @@
             this.pnlBookInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlBookInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlBookInfo.Name = "pnlBookInfo";
-            this.pnlBookInfo.Size = new System.Drawing.Size(761, 548);
+            this.pnlBookInfo.Size = new System.Drawing.Size(761, 546);
             this.pnlBookInfo.TabIndex = 6;
             // 
             // button1
@@ -239,7 +283,8 @@
             // 
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Desc1", true));
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(0, 251);
+            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Location = new System.Drawing.Point(0, 249);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -272,6 +317,18 @@
             this.lblLastTime.TabStop = true;
             this.lblLastTime.Text = "2019-1-1";
             // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Catelog", true));
+            this.linkLabel3.LinkColor = System.Drawing.SystemColors.ControlText;
+            this.linkLabel3.Location = new System.Drawing.Point(240, 165);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(37, 15);
+            this.linkLabel3.TabIndex = 15;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "张三";
+            // 
             // lblAuthor
             // 
             this.lblAuthor.AutoSize = true;
@@ -302,6 +359,15 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "最后更新时间：";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(152, 165);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "分    类：";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -329,7 +395,7 @@
             this.pnlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDetail.Location = new System.Drawing.Point(0, 0);
             this.pnlDetail.Name = "pnlDetail";
-            this.pnlDetail.Size = new System.Drawing.Size(761, 548);
+            this.pnlDetail.Size = new System.Drawing.Size(761, 546);
             this.pnlDetail.TabIndex = 1;
             // 
             // richTextBox1
@@ -339,7 +405,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 53);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(761, 443);
+            this.richTextBox1.Size = new System.Drawing.Size(761, 441);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
@@ -352,10 +418,21 @@
             this.panel5.Controls.Add(this.button2);
             this.panel5.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSource2, "BookName", true));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 496);
+            this.panel5.Location = new System.Drawing.Point(0, 494);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(761, 52);
             this.panel5.TabIndex = 2;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(9, 10);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(216, 32);
+            this.axWindowsMediaPlayer1.TabIndex = 1;
             // 
             // button4
             // 
@@ -426,7 +503,7 @@
             this.pnlList.Location = new System.Drawing.Point(0, 0);
             this.pnlList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(761, 548);
+            this.pnlList.Size = new System.Drawing.Size(761, 546);
             this.pnlList.TabIndex = 17;
             // 
             // groupBox3
@@ -437,7 +514,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(761, 510);
+            this.groupBox3.Size = new System.Drawing.Size(761, 508);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "文章列表";
@@ -445,12 +522,13 @@
             // listBox2
             // 
             this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox2.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 15;
+            this.listBox2.ItemHeight = 18;
             this.listBox2.Location = new System.Drawing.Point(3, 20);
             this.listBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(755, 488);
+            this.listBox2.Size = new System.Drawing.Size(755, 486);
             this.listBox2.TabIndex = 0;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
@@ -517,27 +595,27 @@
             this.关于AToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1099, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1099, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 服务器ToolStripMenuItem
             // 
             this.服务器ToolStripMenuItem.Name = "服务器ToolStripMenuItem";
-            this.服务器ToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
+            this.服务器ToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
             this.服务器ToolStripMenuItem.Text = "服务器（&C）";
             // 
             // 小说设置SToolStripMenuItem
             // 
             this.小说设置SToolStripMenuItem.Name = "小说设置SToolStripMenuItem";
-            this.小说设置SToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.小说设置SToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
             this.小说设置SToolStripMenuItem.Text = "小说设置（&S）";
             this.小说设置SToolStripMenuItem.Click += new System.EventHandler(this.小说设置SToolStripMenuItem_Click);
             // 
             // 关于AToolStripMenuItem
             // 
             this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(94, 26);
             this.关于AToolStripMenuItem.Text = "关于（&A）";
             // 
             // statusStrip1
@@ -559,59 +637,6 @@
             this.toolStripProgressBar1.Size = new System.Drawing.Size(300, 18);
             this.toolStripProgressBar1.Visible = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(152, 165);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 15);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "分    类：";
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Catelog", true));
-            this.linkLabel3.LinkColor = System.Drawing.SystemColors.ControlText;
-            this.linkLabel3.Location = new System.Drawing.Point(240, 165);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(37, 15);
-            this.linkLabel3.TabIndex = 15;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "张三";
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.linkLabel5);
-            this.panel6.Controls.Add(this.linkLabel4);
-            this.panel6.Controls.Add(this.comboBox1);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(3, 20);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(328, 33);
-            this.panel6.TabIndex = 2;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(7, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(162, 23);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(9, 10);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(216, 32);
-            this.axWindowsMediaPlayer1.TabIndex = 1;
-            // 
             // bindingSource1
             // 
             this.bindingSource1.DataSource = typeof(BiqugeSpeeker.BookInfo);
@@ -619,28 +644,6 @@
             // bindingSource2
             // 
             this.bindingSource2.DataSource = typeof(BiqugeSpeeker.BookInfo);
-            // 
-            // linkLabel4
-            // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(177, 9);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(67, 15);
-            this.linkLabel4.TabIndex = 1;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "时间倒序";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Location = new System.Drawing.Point(249, 9);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(67, 15);
-            this.linkLabel5.TabIndex = 1;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "时间正序";
-            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // FormMain
             // 
@@ -663,12 +666,15 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.pnlBookInfo.ResumeLayout(false);
             this.pnlBookInfo.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlDetail.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.pnlList.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -678,9 +684,6 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
