@@ -272,15 +272,16 @@
             this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(9, 10);
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(388, 10);
             this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(216, 32);
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(236, 32);
             this.axWindowsMediaPlayer1.TabIndex = 1;
+            this.axWindowsMediaPlayer1.Visible = false;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(329, 11);
+            this.button4.Location = new System.Drawing.Point(104, 10);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(87, 30);
             this.button4.TabIndex = 0;
@@ -290,7 +291,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(520, 11);
+            this.button5.Location = new System.Drawing.Point(295, 10);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(87, 30);
             this.button5.TabIndex = 0;
@@ -300,7 +301,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(424, 11);
+            this.button3.Location = new System.Drawing.Point(199, 10);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(87, 30);
             this.button3.TabIndex = 0;
@@ -310,7 +311,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(234, 11);
+            this.button2.Location = new System.Drawing.Point(9, 10);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(87, 30);
             this.button2.TabIndex = 0;

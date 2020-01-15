@@ -399,28 +399,35 @@ namespace BiqugeSpeeker
                     }
                     int len = item.Length;
                     for (int i = 0; i <= len / 50; i++)
-                    {                      
-                        isplayed = false;
-                        string text = item.Substring(i * 50, Math.Min(item.Substring(i * 50).Length, 50));
-                        if (Directory.Exists(dir) == false)
+                    {
+                        try
                         {
-                            Directory.CreateDirectory(dir);
-                        }
-                        filePath = Path.Combine(dir, index + ".mp3");
-                        baiduApi.GetAudio(filePath, text);
-                        //播放文字长度                       
-                        backgroundWorker1.ReportProgress((int)(current * 100 / content.Length), filePath);
-                        while (isplayed == false)
-                        {
-                            if (backgroundWorker1.CancellationPending)
+                            isplayed = false;
+                            string text = item.Substring(i * 50, Math.Min(item.Substring(i * 50).Length, 50));
+                            if (Directory.Exists(dir) == false)
                             {
-                                e.Cancel = true;
-                                return;
+                                Directory.CreateDirectory(dir);
                             }
+                            filePath = Path.Combine(dir, index + ".mp3");
+                            baiduApi.GetAudio(filePath, text);
+                            //播放文字长度                       
+                            backgroundWorker1.ReportProgress((int)(current * 100 / content.Length), filePath);
+                            while (isplayed == false)
+                            {
+                                if (backgroundWorker1.CancellationPending)
+                                {
+                                    e.Cancel = true;
+                                    return;
+                                }
+                            }
+                            int start = bookInfo.Desc1.IndexOf(text, lastIndex);
+                            lastIndex = start + Math.Min(item.Substring(i * 50).Length, 50);
+                            index++;
                         }
-                        int start = bookInfo.Desc1.IndexOf(text, lastIndex);
-                        lastIndex = start + Math.Min(item.Substring(i * 50).Length, 50);
-                        index++;
+                        catch(Exception ex)
+                        {
+
+                        }
                     }
                     current++;
                 }
