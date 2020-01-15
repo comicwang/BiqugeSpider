@@ -21,7 +21,7 @@ namespace BiqugeSpeeker
         private IDbProvider dbProvider = DbFactory.CreateDbProvider();
         BaiduApi baiduApi = new BaiduApi();
         IWMPPlaylist playList = null;
-        Dictionary<int, int[]> keyValuePairs = new Dictionary<int, int[]>();
+        //Dictionary<int, int[]> keyValuePairs = new Dictionary<int, int[]>();
 
         public FormMain()
         {
@@ -79,7 +79,7 @@ namespace BiqugeSpeeker
                 {
                     //清空播放列表
                     playList.clear();
-                    keyValuePairs.Clear();
+                    //keyValuePairs.Clear();
                     played = 0;
                     richTextBox1.Text = string.Empty;
                     //删除播放文件
@@ -93,21 +93,27 @@ namespace BiqugeSpeeker
                     {
 
                     }
-                    //自动播放下一章
-                    bookInfo = listBox2.SelectedItem as BookInfo;
-                    List<BookInfo> bookInfos = listBox2.DataSource as List<BookInfo>;
-                    int index = bookInfos.IndexOf(bookInfo);
-                    if (index > 0 && index < bookInfos.Count - 1)
+                    if (isplay)
                     {
-                        button3_Click(null, null);
-                        bookInfo = bindingSource2.DataSource as BookInfo;
-                        if (!backgroundWorker1.IsBusy)
-                            backgroundWorker1.RunWorkerAsync(bookInfo);
-                    }
-                    else
-                    {
-                        if (!backgroundWorker1.IsBusy)
-                            backgroundWorker1.RunWorkerAsync(new BookInfo() { BookName = "当前目录已播放完" });
+                        //自动播放下一章
+                        bookInfo = listBox2.SelectedItem as BookInfo;
+                        List<BookInfo> bookInfos = listBox2.DataSource as List<BookInfo>;
+                        int index = bookInfos.IndexOf(bookInfo);
+                        if (index > 0 && index < bookInfos.Count - 1)
+                        {
+                            button3_Click(null, null);
+                            bookInfo = bindingSource2.DataSource as BookInfo;
+                            if (!backgroundWorker1.IsBusy)
+                                backgroundWorker1.RunWorkerAsync(bookInfo);
+                        }
+                        else
+                        {
+                            if (!backgroundWorker1.IsBusy)
+                            {
+                                backgroundWorker1.RunWorkerAsync(new BookInfo() { BookName = "当前目录已播放完" });
+                                isplay = false;
+                            }
+                        }
                     }
                 }
             }
@@ -243,23 +249,18 @@ namespace BiqugeSpeeker
         /// 高亮显示文本
         /// </summary>
         private void HighlightText()
-        {
-            if (keyValuePairs.ContainsKey(played))
+        {            
+            if (currentTitle == label5.Text)
             {
-                int[] selected = keyValuePairs[played];
-                if (richTextBox1.Text.Length >= selected[0] + selected[1])
-                {
-                    int index = richTextBox1.Find(richTextBox1.Text.Substring(selected[0], selected[1]));
-                    if (index >= 0)
-                    {
-                        richTextBox1.SelectionStart = selected[0];
-                        richTextBox1.SelectionLength = played < (keyValuePairs.Count - 1) ? (keyValuePairs[played + 1][0] - selected[0]) : selected[1];
-                        //richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Regular);
-                        richTextBox1.SelectionBackColor = SystemColors.Highlight;
-                        richTextBox1.SelectionColor = Color.White;
-                    }
-                }
+                richTextBox1.SelectionLength = 0;
+                richTextBox1.SelectionStart = 0;//selected[0];
+                richTextBox1.SelectionLength = lastIndex; 
+                //richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Regular);
+                richTextBox1.SelectionBackColor = SystemColors.Highlight;
+                richTextBox1.SelectionColor = Color.White;
             }
+            else
+                richTextBox1.SelectionLength = 0;
         }
 
         /// <summary>
@@ -299,20 +300,13 @@ namespace BiqugeSpeeker
             }
         }
 
-        private void listBox2_DoubleClick(object sender, EventArgs e)
-        {
-            pnlBookInfo.Visible = false;
-            pnlDetail.Visible = true;
-            pnlList.Visible = false;
-            BookInfo bookInfo = listBox2.SelectedItem as BookInfo;
-            SetDetail(bookInfo.Id);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 播放智能语音
+        /// </summary>
+        private void PlayBook()
         {
             //清空播放列表
             playList.clear();
-            keyValuePairs.Clear();
             played = 0;
             //删除播放文件
             BookInfo bookInfo = bindingSource2.DataSource as BookInfo;
@@ -326,10 +320,52 @@ namespace BiqugeSpeeker
 
             }
             if (backgroundWorker1.IsBusy)
+            {
                 backgroundWorker1.CancelAsync();
-            backgroundWorker1.RunWorkerAsync(bookInfo);
+                //backgroundWorker1.RunWorkerAsync(bookInfo);
+            }
+            else
+            {
+                backgroundWorker1.RunWorkerAsync(bookInfo);
+            }
 
         }
+
+        private void listBox2_DoubleClick(object sender, EventArgs e)
+        {
+            pnlBookInfo.Visible = false;
+            pnlDetail.Visible = true;
+            pnlList.Visible = false;
+            BookInfo bookInfo = listBox2.SelectedItem as BookInfo;
+            SetDetail(bookInfo.Id);
+            if (backgroundWorker1.IsBusy)
+            {
+                PlayBook();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (button5.Text=="开始朗读")
+            {
+                isplay = true;
+                PlayBook();
+                button5.Text = "停止朗读";
+            }
+            else
+            {
+                isplay = false;
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
+                backgroundWorker1.CancelAsync();
+                button5.Text = "开始朗读";
+            }
+        }
+
+        private bool isplay = false;
+
+        private int lastIndex = 0;
+
+        private string currentTitle = string.Empty;
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -340,12 +376,13 @@ namespace BiqugeSpeeker
                 Directory.CreateDirectory(dir);
             }
             int index = 0;
-            int lastLen = 0;
+            lastIndex = 0;
+            currentTitle = bookInfo.BookName;
             //播放章节标题
             string filePath = Path.Combine(dir, index + ".mp3");
             baiduApi.GetAudio(filePath, bookInfo.BookName);
             backgroundWorker1.ReportProgress(0, filePath);
-            keyValuePairs.Add(index, new int[] { 0, 0 });
+            //keyValuePairs.Add(index, new int[] { 0, 0 });
             index++;
 
             //请求资源
@@ -362,21 +399,28 @@ namespace BiqugeSpeeker
                     }
                     int len = item.Length;
                     for (int i = 0; i <= len / 50; i++)
-                    {
+                    {                      
                         isplayed = false;
                         string text = item.Substring(i * 50, Math.Min(item.Substring(i * 50).Length, 50));
+                        if (Directory.Exists(dir) == false)
+                        {
+                            Directory.CreateDirectory(dir);
+                        }
                         filePath = Path.Combine(dir, index + ".mp3");
                         baiduApi.GetAudio(filePath, text);
+                        //播放文字长度                       
                         backgroundWorker1.ReportProgress((int)(current * 100 / content.Length), filePath);
-                        //播放文字长度
-                        int start = bookInfo.Desc1.IndexOf(text, lastLen);
-                        lastLen = start + Math.Min(item.Substring(i * 50).Length, 50);
-                        keyValuePairs.Add(index, new int[] { start, Math.Min(item.Substring(i * 50).Length, 50) });
-                        index++;
                         while (isplayed == false)
                         {
-
+                            if (backgroundWorker1.CancellationPending)
+                            {
+                                e.Cancel = true;
+                                return;
+                            }
                         }
+                        int start = bookInfo.Desc1.IndexOf(text, lastIndex);
+                        lastIndex = start + Math.Min(item.Substring(i * 50).Length, 50);
+                        index++;
                     }
                     current++;
                 }
@@ -409,6 +453,11 @@ namespace BiqugeSpeeker
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             toolStripProgressBar1.Visible = false;
+            if (e.Cancelled && isplay)
+            {
+                BookInfo bookInfo = bindingSource2.DataSource as BookInfo;
+                backgroundWorker1.RunWorkerAsync(bookInfo);
+            }
         }
 
         private void 小说设置SToolStripMenuItem_Click(object sender, EventArgs e)

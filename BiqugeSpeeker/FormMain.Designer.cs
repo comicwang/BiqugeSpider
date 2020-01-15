@@ -40,6 +40,17 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.pnlDetail = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.pnlList = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
@@ -62,17 +73,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pnlDetail = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.服务器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,6 +87,11 @@
             this.splitContainer1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.pnlDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            this.panel4.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -94,11 +99,6 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pnlDetail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
-            this.panel4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -127,9 +127,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitter1);
+            this.splitContainer1.Panel2.Controls.Add(this.pnlDetail);
             this.splitContainer1.Panel2.Controls.Add(this.pnlList);
             this.splitContainer1.Panel2.Controls.Add(this.pnlBookInfo);
-            this.splitContainer1.Panel2.Controls.Add(this.pnlDetail);
             this.splitContainer1.Size = new System.Drawing.Size(1099, 548);
             this.splitContainer1.SplitterDistance = 334;
             this.splitContainer1.TabIndex = 0;
@@ -225,6 +225,119 @@
             this.splitter1.Size = new System.Drawing.Size(3, 548);
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
+            // 
+            // pnlDetail
+            // 
+            this.pnlDetail.Controls.Add(this.richTextBox1);
+            this.pnlDetail.Controls.Add(this.panel5);
+            this.pnlDetail.Controls.Add(this.panel4);
+            this.pnlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDetail.Location = new System.Drawing.Point(0, 0);
+            this.pnlDetail.Name = "pnlDetail";
+            this.pnlDetail.Size = new System.Drawing.Size(761, 548);
+            this.pnlDetail.TabIndex = 1;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource2, "Desc1", true));
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.richTextBox1.Location = new System.Drawing.Point(0, 53);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(761, 443);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = "";
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(BiqugeSpeeker.BookInfo);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.axWindowsMediaPlayer1);
+            this.panel5.Controls.Add(this.button4);
+            this.panel5.Controls.Add(this.button5);
+            this.panel5.Controls.Add(this.button3);
+            this.panel5.Controls.Add(this.button2);
+            this.panel5.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSource2, "BookName", true));
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 496);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(761, 52);
+            this.panel5.TabIndex = 2;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(9, 10);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(216, 32);
+            this.axWindowsMediaPlayer1.TabIndex = 1;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(329, 11);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(87, 30);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "章节列表";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(520, 11);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(87, 30);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "开始朗读";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(424, 11);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(87, 30);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "下一章";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(234, 11);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(87, 30);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "上一章";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(761, 53);
+            this.panel4.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource2, "BookName", true));
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(761, 53);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "章节名";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlList
             // 
@@ -474,118 +587,6 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // pnlDetail
-            // 
-            this.pnlDetail.Controls.Add(this.richTextBox1);
-            this.pnlDetail.Controls.Add(this.panel5);
-            this.pnlDetail.Controls.Add(this.panel4);
-            this.pnlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDetail.Location = new System.Drawing.Point(0, 0);
-            this.pnlDetail.Name = "pnlDetail";
-            this.pnlDetail.Size = new System.Drawing.Size(761, 548);
-            this.pnlDetail.TabIndex = 1;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource2, "Desc1", true));
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 53);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(761, 443);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
-            // 
-            // bindingSource2
-            // 
-            this.bindingSource2.DataSource = typeof(BiqugeSpeeker.BookInfo);
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.axWindowsMediaPlayer1);
-            this.panel5.Controls.Add(this.button4);
-            this.panel5.Controls.Add(this.button5);
-            this.panel5.Controls.Add(this.button3);
-            this.panel5.Controls.Add(this.button2);
-            this.panel5.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSource2, "BookName", true));
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 496);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(761, 52);
-            this.panel5.TabIndex = 2;
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(9, 10);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(216, 32);
-            this.axWindowsMediaPlayer1.TabIndex = 1;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(339, 11);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(87, 30);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "章节列表";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(538, 11);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(87, 30);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "开始朗读";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(445, 11);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(87, 30);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "下一章";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(234, 11);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 30);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "上一章";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(761, 53);
-            this.panel4.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource2, "BookName", true));
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(761, 53);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "章节名";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
@@ -669,6 +670,11 @@
             this.groupBox2.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.pnlDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            this.panel4.ResumeLayout(false);
             this.pnlList.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -678,11 +684,6 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pnlDetail.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
-            this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
-            this.panel4.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
