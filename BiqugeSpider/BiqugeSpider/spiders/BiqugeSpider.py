@@ -98,6 +98,10 @@ class BiqugeSpider(scrapy.Spider):
         #查询所有章节
         list=self.mysql.Query("select Title from BookContent where Id='{0}'".format(str(Id)))
         index=0
+        #获取当前最大章节数
+        maxchapter=self.mysql.Query("select max(num) from (select cast(Chapter as SIGNED) as num from BookContent where id='{0}') as chapter".format(str(Id)))
+        if maxchapter[0][0]:
+            index= maxchapter[0][0]
         listName=[]
         for each in response.xpath("//*[@id='list']/dl/dd"):
              try:                                             

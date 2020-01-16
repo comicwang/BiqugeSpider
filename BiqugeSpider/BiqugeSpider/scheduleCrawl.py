@@ -21,7 +21,7 @@ def crawl_work():
 
 if __name__=='__main__':
     print('*'*10+'开始执行定时爬虫'+'*'*10)
-    schedule.every(12).hours.do(crawl_work)  
+    schedule.every(0.1).hours.do(crawl_work)  
     print('当前时间为{}'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
     print('*' * 10 + '定时爬虫开始运行' + '*' * 10)
     while True:
