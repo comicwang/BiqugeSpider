@@ -42,7 +42,6 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.pnlDetail = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.panel5 = new System.Windows.Forms.Panel();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.button4 = new System.Windows.Forms.Button();
@@ -62,7 +61,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblLatestChapter = new System.Windows.Forms.LinkLabel();
             this.lblLastTime = new System.Windows.Forms.LinkLabel();
@@ -80,6 +78,8 @@
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -88,7 +88,6 @@
             this.groupBox2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.pnlDetail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel4.SuspendLayout();
@@ -97,20 +96,21 @@
             this.panel2.SuspendLayout();
             this.pnlBookInfo.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1099, 548);
+            this.panel1.Size = new System.Drawing.Size(1099, 546);
             this.panel1.TabIndex = 1;
             // 
             // splitContainer1
@@ -130,7 +130,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.pnlDetail);
             this.splitContainer1.Panel2.Controls.Add(this.pnlList);
             this.splitContainer1.Panel2.Controls.Add(this.pnlBookInfo);
-            this.splitContainer1.Size = new System.Drawing.Size(1099, 548);
+            this.splitContainer1.Size = new System.Drawing.Size(1099, 546);
             this.splitContainer1.SplitterDistance = 334;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -144,7 +144,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(334, 548);
+            this.groupBox2.Size = new System.Drawing.Size(334, 546);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "小说列表";
@@ -158,7 +158,7 @@
             this.listBox1.Location = new System.Drawing.Point(3, 78);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(328, 468);
+            this.listBox1.Size = new System.Drawing.Size(328, 466);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -222,7 +222,7 @@
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 548);
+            this.splitter1.Size = new System.Drawing.Size(3, 546);
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
             // 
@@ -234,7 +234,7 @@
             this.pnlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDetail.Location = new System.Drawing.Point(0, 0);
             this.pnlDetail.Name = "pnlDetail";
-            this.pnlDetail.Size = new System.Drawing.Size(761, 548);
+            this.pnlDetail.Size = new System.Drawing.Size(761, 546);
             this.pnlDetail.TabIndex = 1;
             // 
             // richTextBox1
@@ -245,13 +245,9 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 53);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(761, 443);
+            this.richTextBox1.Size = new System.Drawing.Size(761, 441);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
-            // 
-            // bindingSource2
-            // 
-            this.bindingSource2.DataSource = typeof(BiqugeSpeeker.BookInfo);
             // 
             // panel5
             // 
@@ -262,7 +258,7 @@
             this.panel5.Controls.Add(this.button2);
             this.panel5.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSource2, "BookName", true));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 496);
+            this.panel5.Location = new System.Drawing.Point(0, 494);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(761, 52);
             this.panel5.TabIndex = 2;
@@ -348,7 +344,7 @@
             this.pnlList.Location = new System.Drawing.Point(0, 0);
             this.pnlList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(761, 548);
+            this.pnlList.Size = new System.Drawing.Size(761, 546);
             this.pnlList.TabIndex = 17;
             // 
             // groupBox3
@@ -359,7 +355,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(761, 510);
+            this.groupBox3.Size = new System.Drawing.Size(761, 508);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "文章列表";
@@ -373,7 +369,7 @@
             this.listBox2.Location = new System.Drawing.Point(3, 20);
             this.listBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(755, 488);
+            this.listBox2.Size = new System.Drawing.Size(755, 486);
             this.listBox2.TabIndex = 0;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
@@ -441,7 +437,7 @@
             this.pnlBookInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlBookInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlBookInfo.Name = "pnlBookInfo";
-            this.pnlBookInfo.Size = new System.Drawing.Size(761, 548);
+            this.pnlBookInfo.Size = new System.Drawing.Size(761, 546);
             this.pnlBookInfo.TabIndex = 6;
             // 
             // button1
@@ -476,16 +472,12 @@
             this.label2.Text = "小说名";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(BiqugeSpeeker.BookInfo);
-            // 
             // textBox1
             // 
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Desc1", true));
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBox1.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(0, 251);
+            this.textBox1.Location = new System.Drawing.Point(0, 249);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -605,27 +597,27 @@
             this.关于AToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1099, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1099, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 服务器ToolStripMenuItem
             // 
             this.服务器ToolStripMenuItem.Name = "服务器ToolStripMenuItem";
-            this.服务器ToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
+            this.服务器ToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
             this.服务器ToolStripMenuItem.Text = "服务器（&C）";
             // 
             // 小说设置SToolStripMenuItem
             // 
             this.小说设置SToolStripMenuItem.Name = "小说设置SToolStripMenuItem";
-            this.小说设置SToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.小说设置SToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
             this.小说设置SToolStripMenuItem.Text = "小说设置（&S）";
             this.小说设置SToolStripMenuItem.Click += new System.EventHandler(this.小说设置SToolStripMenuItem_Click);
             // 
             // 关于AToolStripMenuItem
             // 
             this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(94, 26);
             this.关于AToolStripMenuItem.Text = "关于（&A）";
             // 
             // statusStrip1
@@ -646,6 +638,15 @@
             this.toolStripProgressBar1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStripProgressBar1.Size = new System.Drawing.Size(300, 18);
             this.toolStripProgressBar1.Visible = false;
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(BiqugeSpeeker.BookInfo);
+            this.bindingSource2.DataSourceChanged += new System.EventHandler(this.bindingSource2_DataSourceChanged);
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(BiqugeSpeeker.BookInfo);
             // 
             // FormMain
             // 
@@ -672,7 +673,6 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.pnlDetail.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.panel4.ResumeLayout(false);
@@ -683,12 +683,13 @@
             this.pnlBookInfo.ResumeLayout(false);
             this.pnlBookInfo.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
