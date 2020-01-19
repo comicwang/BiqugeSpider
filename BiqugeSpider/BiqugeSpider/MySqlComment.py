@@ -4,10 +4,10 @@
 import pymysql
 
 class MySqlComment():
-    host='cd-cdb-adv1bzus.sql.tencentcdb.com'
-    port=62650
+    host='39.99.173.172'
+    port=3306
     user='root'
-    password='ww313345335'
+    password='Ww313345335'
     defaultDb='Biquge'
 
     def __init__(self, *args, **kwargs):

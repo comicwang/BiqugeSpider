@@ -307,6 +307,7 @@ namespace BiqugeSpeeker
             }
             int index = 0;
             lastIndex = 0;
+            firstPlay = true;
             //播放章节标题
             string filePath = Path.Combine(dir, index + ".mp3");
             baiduApi.GetAudio(filePath, bookInfo.BookName);
@@ -362,6 +363,8 @@ namespace BiqugeSpeeker
             }
         }
 
+        private bool firstPlay = true;
+
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             toolStripProgressBar1.Visible = true;
@@ -370,12 +373,13 @@ namespace BiqugeSpeeker
             lastFilePath = filePath;
             IWMPMedia media = axWindowsMediaPlayer1.newMedia(filePath); //参数为歌曲路径
             playList.appendItem(media);
-            if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsReady)
+            if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsReady && firstPlay)
             {
                 //捕获异常 并忽略异常
                 try
                 {
                     axWindowsMediaPlayer1.Ctlcontrols.play();
+                    firstPlay = false;
                 }
                 catch (Exception)
                 {
@@ -490,6 +494,23 @@ namespace BiqugeSpeeker
             if (isplay)
             {
                 PlayBook();
+            }
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //删除上次播放目录
+            if (File.Exists(lastFilePath))
+            {
+                string dir = Path.GetDirectoryName(lastFilePath);
+                try
+                {
+                    Directory.Delete(dir, true);
+                }
+                catch
+                {
+
+                }
             }
         }
     }
